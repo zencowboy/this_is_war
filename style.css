@@ -1,0 +1,59 @@
+#hed1 {
+
+	text-align: center;
+}
+
+.card{
+	padding: 10px 20px 20px 20px;
+	width: 200px;
+	height: 320px;
+    border-radius: 10px;
+}
+.lCard{
+	width:40px;
+	height:64px;
+	border-radius: 4px;
+	background-color: blue;
+	margin-left: 6px;
+	margin-top: 10px;
+/*	padding: 10px;*/
+}
+.col-xs-3{
+	margin-left: -15px;
+}
+.pDeck{
+	background: #2c3e50;
+}
+.cDeck{
+	background: #c0392b;
+}
+.cCard{
+	font-size: 50px;
+	background-color: #ecf0f1;
+	color: #c0392b ;
+	border: solid #c0392b 5px;
+}
+.blank{
+	background-color: #27ae60 !important;
+	border: none !important;
+}
+
+.pCard{
+	font-size: 50px;
+	background-color: #ecf0f1;
+	color: #2c3e50;
+	border: solid #2c3e50 5px;
+}
+
+.bump{
+	margin: 20px;
+}
+#gameStatus{
+	font-size: 100px;
+}
+body{
+	background-image: url(https://previews.123rf.com/images/bengingell/bengingell1701/bengingell170100158/70172235-green-felt-of-a-card-table.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+
+}
