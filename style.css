@@ -1,6 +1,33 @@
+
+
 #hed1 {
 	font-size: 100px;
 	text-align: center;
+	color: white;
+}
+
+#newGame {
+
+	font-size: 20px;
+	margin: 1em;
+	border-radius: 1em;
+	animation: zoom-in .3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	/* box-shadow: 2px 2px 4px gray;   */
+	background-color: white;   
+}
+
+#flip {
+	margin: 1em;
+	border-radius: 1em;
+	background-color: white;
+	font-size: 30px;
+}
+
+#take {
+	margin: 1em;
+	border-radius: 1em;
+	background-color: white;
+	font-size: 30px;
 }
 
 .card{
@@ -52,7 +79,7 @@
 	font-size: 100px;
 }
 body{
-	background-image: url(https://previews.123rf.com/images/bengingell/bengingell1701/bengingell170100158/70172235-green-felt-of-a-card-table.jpg);
+	background-image:url("../Images/background-image.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 
