@@ -2,7 +2,7 @@ window.onload = function(){
 	//initializes game on load
 
 
-	//card constructor
+	//card constructor "blueprint"
 	function Card (numb){
 		this.numb = numb;
 		//this.suit = suit;
@@ -18,6 +18,7 @@ window.onload = function(){
 	}
 
 	//creates a deck of 52 cards
+	// Mitch: Let's use the API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 	Deck.prototype.init = function(){
 		for (var i=1; i <= 13; i++){
 			for (var x=0; x < 4; x++){
@@ -49,12 +50,12 @@ window.onload = function(){
 		}
 	};
 
-	//Game constructor
+	//Game constructor "blue print"
 	function Game(){
 		this.winner;
 		this.loser;
 	};
-	//cretes two players
+	//creates two players
 	Game.prototype.init = function(){
 		player = new Player();
 		computer = new Player();
@@ -81,6 +82,7 @@ window.onload = function(){
 	var flipped = false;
 
 	$("#flip").click(function(){
+		
 		if (player.deck.length < 1){
 			$("#gameStatus").html("You lose.");
 		}
@@ -93,6 +95,7 @@ window.onload = function(){
 			$("#playerCard").html(player.deck[player.deck.length-1].numb);
 			$("#computerCard").html(computer.deck[computer.deck.length-1].numb);
 		}
+		game.compare();
 		flipped = true;
 	});
 
@@ -100,7 +103,6 @@ window.onload = function(){
 	$("#take").click(function(){
 		//makes sure the cards have been flipped first
 		if (flipped === true){
-			game.compare();
 			$("#playerCard").html(" ");
 			$("#computerCard").html(" ");
 			$("#playerCard").addClass('blank');
@@ -109,14 +111,17 @@ window.onload = function(){
 		flipped = false;
 	});
 
-//this works even if flip hasn't been clicked. Fix.
+//this works even if flip hasn't been clicked. Need to fix.
 	Game.prototype.compare = function(){
 	//if the player wins...
-		var playerCard = player.deck[player.deck.length-1];
-		var computerCard = computer.deck[computer.deck.length-1];
-		// console.log("Player Card: " + playerCard.numb);
-		// console.log("Computer Card: " + computerCard.numb);
+		let playerCard = player.deck[player.deck.length-1];
+		let computerCard = computer.deck[computer.deck.length-1];
+		
+		console.log("Player Card: " + playerCard.numb);
+		console.log("Computer Card: " + computerCard.numb);
 		if(playerCard.numb > computerCard.numb){
+			console.log("you won round");
+			$("#gameStatus").html("You win!");
 			//put the card at the end of the player deck
 			player.deck.unshift(computerCard);
 			//and take it out of the computer deck.
@@ -137,37 +142,20 @@ window.onload = function(){
 		console.log("Computer Deck: " + computer.deck.length)
 
 	}
+	
+	Game.prototype.flipFour = function() {
+		//take four out of each deck
+		//sum the four cards 
+		//compare the total
+		//display the cars
+		
+		//if total is not the same, stop
 
-	//need to add validations all over this...
-	var flipThree = function (start){
-		start = start + 4;
-		//these are the new cards we're comparing
-		var pCard = player.deck[player.deck.length-start];
-		var cCard = computer.deck[computer.deck.length-start];
-		//take out all of the cards that get played
-		//might have scoping issues with this
-		temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
-		temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
-		//if player is higher than computer
-		if (pCard.numb > cCard.numb){
-			//take out all of the ones five back through the end of the array
-			//take the array of the cards taken out
-			//and put each card in the beginning (bottom) of the player deck
-			for (var i = 0; i < temp.length; i++){
-				player.deck.unshift(temp[i]);
-				player.deck.unshift(temp2[i]);
-			}
-		} else if(pCard.numb < cCard.numb){
-				for (var i = 0; i < temp.length; i++){
-					computer.deck.unshift(temp2[i]);
-					computer.deck.unshift(temp[i]);
-				}
-			//for additional ties
-		} else{
-			flipThree(start);
-		}
+		//else we do over - call flipFour again
 	}
 
 
 
-} //end onload
+
+		}
+	

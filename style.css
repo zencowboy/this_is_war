@@ -1,5 +1,5 @@
 #hed1 {
-
+	font-size: 100px;
 	text-align: center;
 }
 
@@ -29,18 +29,18 @@
 }
 .cCard{
 	font-size: 50px;
-	background-color: #ecf0f1;
+	background-color: green;
 	color: #c0392b ;
 	border: solid #c0392b 5px;
 }
 .blank{
-	background-color: #27ae60 !important;
+	background-color: #27ae60;
 	border: none !important;
 }
 
 .pCard{
 	font-size: 50px;
-	background-color: #ecf0f1;
+	background-color: green;
 	color: #2c3e50;
 	border: solid #2c3e50 5px;
 }
