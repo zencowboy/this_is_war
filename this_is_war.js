@@ -18,7 +18,7 @@ window.onload = function(){
 	}
 
 	//creates a deck of 52 cards
-	// Mitch: Let's use the API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
+	// Mitch: Use API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 	Deck.prototype.init = function(){
 		for (var i=1; i <= 13; i++){
 			for (var x=0; x < 4; x++){
