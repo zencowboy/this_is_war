@@ -18,10 +18,10 @@ window.onload = function(){
 	}
 
 	//creates a deck of 52 cards
-	// Mitch: Use API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
+	// Use API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 	Deck.prototype.init = function(){
-		for (var i=1; i <= 13; i++){
-			for (var x=0; x < 4; x++){
+		for (let i=1; i <= 13; i++){
+			for (let x=0; x < 4; x++){
 				aCard = new Card(i);
 				this.deck.push(aCard);
 			}
@@ -60,7 +60,7 @@ window.onload = function(){
 		player = new Player();
 		computer = new Player();
 		// inits a the full deck
-		var firstDeck = new Deck();
+		let firstDeck = new Deck();
 		firstDeck.init();
 		//shuffles the deck
 		shuffle(firstDeck.deck);
@@ -79,7 +79,7 @@ window.onload = function(){
 		$("#gameStatus").html(" ");
 	});
 
-	var flipped = false;
+	let flipped = false;
 
 	$("#flip").click(function(){
 		
@@ -136,7 +136,7 @@ window.onload = function(){
 			//for ties
 		} else {
 			$("#gameStatus").html("Breaking tie...");
-			flipThree(1);
+			flipFour(1);
 		}
 		console.log("Player Deck: " + player.deck.length)
 		console.log("Computer Deck: " + computer.deck.length)
@@ -152,10 +152,33 @@ window.onload = function(){
 		//if total is not the same, stop
 
 		//else we do over - call flipFour again
+	let flipFour = function (start){
+		start = start + 4;
+		//these are the new cards we're comparing
+		let pCard = player.deck[player.deck.length-start];
+		let cCard = computer.deck[computer.deck.length-start];
+		//take out all of the cards that get played
+		temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
+		temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
+		//if player is higher than computer
+		if (pCard.numb > cCard.numb){
+			//take out all of the ones five back through the end of the array
+			//take the array of the cards taken out
+			//and put each card in the beginning (bottom) of the player deck
+			for (let i = 0; i < temp.length; i++){
+				player.deck.unshift(temp[i]);
+				player.deck.unshift(temp2[i]);
+			}
+		} else if(pCard.numb < cCard.numb){
+				for (var i = 0; i < temp.length; i++){
+					computer.deck.unshift(temp2[i]);
+					computer.deck.unshift(temp[i]);
+				}
+		
 	}
 
 
 
 
 		}
-	
+	}
