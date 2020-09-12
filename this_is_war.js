@@ -29,9 +29,9 @@ window.onload = function(){
 	}
 
 	function shuffle(array) {
-	    for (var i = array.length - 1; i > 0; i--) {
-	        var j = Math.floor(Math.random() * (i + 1));
-	        var temp = array[i];
+	    for (let i = array.length - 1; i > 0; i--) {
+	        let j = Math.floor(Math.random() * (i + 1));
+	        let temp = array[i];
 	        array[i] = array[j];
 	        array[j] = temp;
 	    }
@@ -136,6 +136,7 @@ window.onload = function(){
 			temp = computer.deck.pop();
 			computer.deck.unshift(temp);
 			player.deck.pop();
+			$("#gameStatus").html("You lose!");
 			//for ties
 		} else {
 			$("#gameStatus").html("Breaking tie...");
@@ -143,9 +144,9 @@ window.onload = function(){
 		}
 		console.log("Player Deck: " + player.deck.length)
 		console.log("Computer Deck: " + computer.deck.length)
-		
-		document.getElementById("player-score").innerHTML = "Player Score: " + player.deck.length;
-		document.getElementById("computer-score").innerHTML = "Computer Score: " + computer.deck.length;
+
+		document.getElementById("player-score").innerHTML = "Score: " + player.deck.length;
+		document.getElementById("computer-score").innerHTML = "Score: " + computer.deck.length;
 
 	}
 	
@@ -163,11 +164,14 @@ window.onload = function(){
 		//these are the new cards we're comparing
 		let pCard = player.deck[player.deck.length-start];
 		let cCard = computer.deck[computer.deck.length-start];
+		
+		
 		//take out all of the cards that get played
 		temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
 		temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
 		//if player is higher than computer
-		if (pCard.numb > cCard.numb){
+		
+		if (pCard.numb.length > cCard.numb.length){
 			//take out all of the ones five back through the end of the array
 			//take the array of the cards taken out
 			//and put each card in the beginning (bottom) of the player deck
