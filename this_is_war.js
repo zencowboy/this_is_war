@@ -73,6 +73,9 @@ window.onload = function(){
 		game = new Game();
 	game.init();
 
+
+
+
 	$("#newGame").click(function(){
 		game = new Game();
 		game.init();
@@ -140,6 +143,9 @@ window.onload = function(){
 		}
 		console.log("Player Deck: " + player.deck.length)
 		console.log("Computer Deck: " + computer.deck.length)
+		
+		document.getElementById("player-score").innerHTML = "Player Score: " + player.deck.length;
+		document.getElementById("computer-score").innerHTML = "Computer Score: " + computer.deck.length;
 
 	}
 	

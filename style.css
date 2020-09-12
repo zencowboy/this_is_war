@@ -16,6 +16,24 @@
 	background-color: white;   
 }
 
+#player-score
+{
+	font-size: 40px;
+	position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+}
+
+#computer-score
+{
+	font-size: 40px;
+	position: absolute;
+    top: 60px;
+    left: 60px;
+    z-index: 100;
+}
+
 #flip {
 	margin: 1em;
 	border-radius: 1em;
@@ -61,8 +79,8 @@
 	border: solid #c0392b 5px;
 }
 .blank{
-	;
-	border: none !important;
+	
+	border: none;
 }
 
 .pCard{
