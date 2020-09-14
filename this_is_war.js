@@ -87,19 +87,22 @@ window.onload = function(){
 	$("#flip").click(function(){
 		
 		if (player.deck.length < 1){
-			$("#gameStatus").html("You lose.");
+			// $("#gameStatus").html("You lose.");
 		}
 		else if (computer.deck.length < 1){
-			$("#gameStatus").html("You win!");
+			// $("#gameStatus").html("You win!");
 		} else {
 			$("#playerCard").removeClass('blank');
 			console.log("removed, maybe?");
 			$("#computerCard").removeClass('blank');
 			$("#playerCard").html(player.deck[player.deck.length-1].numb);
 			$("#computerCard").html(computer.deck[computer.deck.length-1].numb);
+			
+
 		}
 		game.compare();
 		flipped = true;
+		
 	});
 
 
@@ -110,8 +113,10 @@ window.onload = function(){
 			$("#computerCard").html(" ");
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
+			$("#gamestatus").display="blank" // this isn't working to remove status after Take. Ask Kevin.
 		}
 		flipped = false;
+		
 	});
 
 //this works even if flip hasn't been clicked. Need to fix.
@@ -140,7 +145,7 @@ window.onload = function(){
 			//for ties
 		} else {
 			$("#gameStatus").html("Breaking tie...");
-			flipFour(1);
+			this.flipFour(1);
 		}
 		console.log("Player Deck: " + player.deck.length)
 		console.log("Computer Deck: " + computer.deck.length)
@@ -152,6 +157,36 @@ window.onload = function(){
 	
 	Game.prototype.flipFour = function() {
 		//take four out of each deck
+		let playerFlipFour = player.deck.splice(0,4)
+		let computerFlipFour = computer.deck.splice(0,4)
+		
+		let playerSum = 0;
+		let computerSum =0;
+
+		for (let i=0; i <4; i++) {
+			playerSum += playerFlipFour[i];
+			computerSum += computerFlipFour[i];
+
+			if(playerSum.numb > computerSum.numb){
+				console.log("you won round");
+			$("#gameStatus").html("You win!");
+			//put the cards at the end of the player deck
+			player.deck.unshift(computersum);
+			//and take it out of the computer deck.
+			temp = player.deck.pop();
+			player.deck.unshift(temp);
+			computer.deck.pop();
+
+		}
+
+	//sum the four cards 
+		console.log("Player Card: " + playerSum, playerFlipFour);
+		console.log("Computer Card: " + computerSum, computerFlipFour);
+		// if(playerFlipFour.numb > computerflipFour.numb){
+		// 	console.log("you won round");
+		// 	$("#gameStatus").html("You won the round!")
+	
+	
 		//sum the four cards 
 		//compare the total
 		//display the cars
@@ -159,36 +194,45 @@ window.onload = function(){
 		//if total is not the same, stop
 
 		//else we do over - call flipFour again
-	let flipFour = function (start){
-		start = start + 4;
-		//these are the new cards we're comparing
-		let pCard = player.deck[player.deck.length-start];
-		let cCard = computer.deck[computer.deck.length-start];
-		
-		
-		//take out all of the cards that get played
-		temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
-		temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
-		//if player is higher than computer
-		
-		if (pCard.numb.length > cCard.numb.length){
-			//take out all of the ones five back through the end of the array
-			//take the array of the cards taken out
-			//and put each card in the beginning (bottom) of the player deck
-			for (let i = 0; i < temp.length; i++){
-				player.deck.unshift(temp[i]);
-				player.deck.unshift(temp2[i]);
-			}
-		} else if(pCard.numb < cCard.numb){
-				for (var i = 0; i < temp.length; i++){
-					computer.deck.unshift(temp2[i]);
-					computer.deck.unshift(temp[i]);
-				}
-		
-	}
 
 
 
 
-		}
+
+
+
+
+	// let flipFour = function (start){
+	// 	start = start + 4;
+	// 	//these are the new cards we're comparing
+	// 	let pCard = player.deck[player.deck.length-start];
+	// 	let cCard = computer.deck[computer.deck.length-start];
+		
+		
+	// 	//take out all of the cards that get played
+	// 	temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
+	// 	temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
+	// 	//if player is higher than computer
+		
+	// 	if (pCard.numb.length > cCard.numb.length){
+	// 		//take out all of the ones five back through the end of the array
+	// 		//take the array of the cards taken out
+	// 		//and put each card in the beginning (bottom) of the player deck
+	// 		for (let i = 0; i < temp.length; i++){
+	// 			player.deck.unshift(temp[i]);
+	// 			player.deck.unshift(temp2[i]);
+	// 		}
+	// 	} else if(pCard.numb < cCard.numb){
+	// 			for (var i = 0; i < temp.length; i++){
+	// 				computer.deck.unshift(temp2[i]);
+	// 				computer.deck.unshift(temp[i]);
+	// 			}
+		
+	// }
+
+
+
+
+		// }
 	}}
+}
