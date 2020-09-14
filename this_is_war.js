@@ -18,7 +18,6 @@ window.onload = function(){
 	}
 
 	//creates a deck of 52 cards
-	// Use API from https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 	Deck.prototype.init = function(){
 		for (let i=1; i <= 13; i++){
 			for (let x=0; x < 4; x++){
@@ -73,9 +72,6 @@ window.onload = function(){
 		game = new Game();
 	game.init();
 
-
-
-
 	$("#newGame").click(function(){
 		game = new Game();
 		game.init();
@@ -85,23 +81,26 @@ window.onload = function(){
 	let flipped = false;
 
 	$("#flip").click(function(){
+		if(!flipped){
+			if (player.deck.length < 1){
+				$("#gameStatus").html("You've lost the War!.");
+			}
+			else if (computer.deck.length < 1){
+				$("#gameStatus").html("You've lost the War!");
+			} else {
+				$("#playerCard").removeClass('blank');
+				console.log("removed, maybe?");
+				$("#computerCard").removeClass('blank');
+				$("#topPlayerCard").html(player.deck[player.deck.length-1].numb);
+				$("#bottomPlayerCard").html(player.deck[player.deck.length-1].numb);
+				$("#topComputerCard").html(player.deck[player.deck.length-1].numb);
+				$("#bottomComputerCard").html(player.deck[player.deck.length-1].numb);
+	
+			}
+			game.compare();
+			flipped = true;
+		}
 		
-		if (player.deck.length < 1){
-			// $("#gameStatus").html("You lose.");
-		}
-		else if (computer.deck.length < 1){
-			// $("#gameStatus").html("You win!");
-		} else {
-			$("#playerCard").removeClass('blank');
-			console.log("removed, maybe?");
-			$("#computerCard").removeClass('blank');
-			$("#playerCard").html(player.deck[player.deck.length-1].numb);
-			$("#computerCard").html(computer.deck[computer.deck.length-1].numb);
-			
-
-		}
-		game.compare();
-		flipped = true;
 		
 	});
 
@@ -113,13 +112,12 @@ window.onload = function(){
 			$("#computerCard").html(" ");
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
-			$("#gamestatus").display="blank" // this isn't working to remove status after Take. Ask Kevin.
+			$("#gameStatus").html("")
 		}
 		flipped = false;
 		
 	});
 
-//this works even if flip hasn't been clicked. Need to fix.
 	Game.prototype.compare = function(){
 	//if the player wins...
 		let playerCard = player.deck[player.deck.length-1];
@@ -147,92 +145,73 @@ window.onload = function(){
 			$("#gameStatus").html("Breaking tie...");
 			this.flipFour(1);
 		}
-		console.log("Player Deck: " + player.deck.length)
-		console.log("Computer Deck: " + computer.deck.length)
+		// console.log("Player Deck: " + player.deck.length)
+		// console.log("Computer Deck: " + computer.deck.length)
 
 		document.getElementById("player-score").innerHTML = "Score: " + player.deck.length;
 		document.getElementById("computer-score").innerHTML = "Score: " + computer.deck.length;
-
+		console.log(player.deck)
+		console.log(computer.deck)
 	}
 	
 	Game.prototype.flipFour = function() {
 		//take four out of each deck
 		let playerFlipFour = player.deck.splice(0,4)
 		let computerFlipFour = computer.deck.splice(0,4)
+		console.log("DRAW")
 		
 		let playerSum = 0;
 		let computerSum =0;
 
 		for (let i=0; i <4; i++) {
-			playerSum += playerFlipFour[i];
-			computerSum += computerFlipFour[i];
-
-			if(playerSum.numb > computerSum.numb){
-				console.log("you won round");
-			$("#gameStatus").html("You win!");
-			//put the cards at the end of the player deck
-			player.deck.unshift(computersum);
-			//and take it out of the computer deck.
-			temp = player.deck.pop();
-			player.deck.unshift(temp);
-			computer.deck.pop();
-
+			playerSum += playerFlipFour[i].numb;
+			$('#playerBreak .lCard:eq('+i+')').html(playerFlipFour[i].numb)
+			computerSum += computerFlipFour[i].numb;
+			$('#computerBreak .lCard:eq('+i+')').html(computerFlipFour[i].numb)
 		}
 
-	//sum the four cards 
+		if(playerSum > computerSum){
+				console.log("you won the Break");
+			$("#gameStatus").html("You won the Break!");
+			//put the cards at the end of the player deck
+			while(playerFlipFour.length > 0){
+				player.deck.push(playerFlipFour.pop());
+			}
+			while(computerFlipFour.length > 0){
+				player.deck.push(computerFlipFour.pop())
+			}
+
+
+		} else if (playerSum < computerSum){
+			console.log("you lost the Break");
+			$("#gameStatus").html("You won the Break!");
+			while(playerFlipFour.length > 0){
+				computer.deck.push(playerFlipFour.pop());
+			}
+			while(computerFlipFour.length > 0){
+				computer.deck.push(computerFlipFour.pop())
+			}
+				$("#gameStatus").html("You lose!");
+
+		}
+		else {
+			$("#gameStatus").html("Breaking tie again");
+
+			while(playerFlipFour.length > 0){
+				player.deck.push(playerFlipFour.pop());
+			}
+			while(computerFlipFour.length > 0){
+				computer.deck.push(computerFlipFour.pop())
+			}
+			console.log(player.deck);
+			console.log(computer.deck);
+			//this.flipFour();
+		}
+
+	// //sum the four cards 
 		console.log("Player Card: " + playerSum, playerFlipFour);
 		console.log("Computer Card: " + computerSum, computerFlipFour);
-		// if(playerFlipFour.numb > computerflipFour.numb){
-		// 	console.log("you won round");
-		// 	$("#gameStatus").html("You won the round!")
-	
-	
-		//sum the four cards 
-		//compare the total
-		//display the cars
-		
-		//if total is not the same, stop
 
-		//else we do over - call flipFour again
+	}
 
-
-
-
-
-
-
-
-	// let flipFour = function (start){
-	// 	start = start + 4;
-	// 	//these are the new cards we're comparing
-	// 	let pCard = player.deck[player.deck.length-start];
-	// 	let cCard = computer.deck[computer.deck.length-start];
-		
-		
-	// 	//take out all of the cards that get played
-	// 	temp = computer.deck.splice(computer.deck.length-(start), computer.deck.length-1);
-	// 	temp2 = player.deck.splice(player.deck.length-(start), player.deck.length-1);
-	// 	//if player is higher than computer
-		
-	// 	if (pCard.numb.length > cCard.numb.length){
-	// 		//take out all of the ones five back through the end of the array
-	// 		//take the array of the cards taken out
-	// 		//and put each card in the beginning (bottom) of the player deck
-	// 		for (let i = 0; i < temp.length; i++){
-	// 			player.deck.unshift(temp[i]);
-	// 			player.deck.unshift(temp2[i]);
-	// 		}
-	// 	} else if(pCard.numb < cCard.numb){
-	// 			for (var i = 0; i < temp.length; i++){
-	// 				computer.deck.unshift(temp2[i]);
-	// 				computer.deck.unshift(temp[i]);
-	// 			}
-		
-	// }
-
-
-
-
-		// }
-	}}
-}
+	}
