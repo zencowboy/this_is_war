@@ -64,7 +64,8 @@
 	color:black;
 	margin-left: 6px;
 	margin-top: 10px;
-/*	padding: 10px;*/
+	padding: 9px;
+	/* display: none; */
 }
 .col-xs-6{
 	Font-size: 20px;
@@ -83,14 +84,14 @@
 }
 .cCard{
 	font-size: 50px;
-	color: #da8686 ;
+	color: black;
 	/* border: solid #da8686 5px; */
 	background-color: white;
 }
 
 .pCard{
 	font-size: 50px;
-	color: #b1cbe6;
+	color: black;
 	/* border: solid #b1cbe6 5px; */
 	background-color: white;
 	
@@ -107,10 +108,10 @@
 }
 
 #bottomPlayerCard {
-	color: #b1cbe6;
+	color: black;
 	font-size: 50px;
-	margin-left: 100px;
-	margin-top: 150px;
+	margin-left: 110px;
+	margin-top: 160px;
 	display: inline-block;
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
@@ -122,10 +123,10 @@
 	font-size: 50px;
 }
 #bottomComputerCard {
-	color: #da8686;
+	color: black;
 	font-size: 50px;
-	margin-left: 100px;
-	margin-top: 150px;
+	margin-left: 110px;
+	margin-top: 160px;
 	display: inline-block;
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);

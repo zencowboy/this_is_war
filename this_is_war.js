@@ -3,10 +3,10 @@ window.onload = function(){
 
 
 	//card constructor "blueprint"
-	function Card (numb){
+	function Card (numb, suit){
 		this.numb = numb;
-		//this.suit = suit;
-		this.name; // for eventuality of aces and king/queen/jack
+		// this.suit = ["diamonds", "clubs", "hearts", "spades"];
+		// this.cardName = numb + "of" + suit;
 	}
 	//deck constructor with an empty array
 	function Deck (){
@@ -23,9 +23,20 @@ window.onload = function(){
 			for (let x=0; x < 4; x++){
 				aCard = new Card(i);
 				this.deck.push(aCard);
+	// Deck.prototype.init = function(){
+	// 	suits = ["diamonds", "clubs", "hearts", "spades"]
+	// 	ranks = "A23456789TJQK"
+	// 	deck = new Card(ranks.length * suits.length);
+	// 	for (i = 0; i < suits.length; i++){
+	// 		for (j = 0; j < ranks.length; j++)
+	// 		  this.deck[j + i * ranks.length] = new Card(ranks[j],suits[i]);
+	// 		  this.deck.push(aCard);
+	// 		  }
+
 			}
 		}
 	}
+	
 
 	function shuffle(array) {
 	    for (let i = array.length - 1; i > 0; i--) {
@@ -34,7 +45,9 @@ window.onload = function(){
 	        array[i] = array[j];
 	        array[j] = temp;
 	    }
-	    return array;
+		return array;
+		console.log(shuffle())
+
 	}
 	//puts half the cards in each.
 	Deck.prototype.deal = function(){
@@ -86,15 +99,15 @@ window.onload = function(){
 				$("#gameStatus").html("You've lost the War!.");
 			}
 			else if (computer.deck.length < 1){
-				$("#gameStatus").html("You've lost the War!");
+				$("#gameStatus").html("You've won the War!");
 			} else {
 				$("#playerCard").removeClass('blank');
 				console.log("removed, maybe?");
 				$("#computerCard").removeClass('blank');
 				$("#topPlayerCard").html(player.deck[player.deck.length-1].numb);
 				$("#bottomPlayerCard").html(player.deck[player.deck.length-1].numb);
-				$("#topComputerCard").html(player.deck[player.deck.length-1].numb);
-				$("#bottomComputerCard").html(player.deck[player.deck.length-1].numb);
+				$("#topComputerCard").html(computer.deck[computer.deck.length-1].numb);
+				$("#bottomComputerCard").html(computer.deck[computer.deck.length-1].numb);
 	
 			}
 			game.compare();
@@ -113,6 +126,7 @@ window.onload = function(){
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
 			$("#gameStatus").html("")
+			$("computerBreak").removeClass("");
 		}
 		flipped = false;
 		
@@ -184,7 +198,7 @@ window.onload = function(){
 
 		} else if (playerSum < computerSum){
 			console.log("you lost the Break");
-			$("#gameStatus").html("You won the Break!");
+			$("#gameStatus").html("You lost the Break!");
 			while(playerFlipFour.length > 0){
 				computer.deck.push(playerFlipFour.pop());
 			}
