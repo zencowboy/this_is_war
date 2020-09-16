@@ -5,8 +5,8 @@ window.onload = function(){
 	//card constructor "blueprint"
 	function Card (numb, suit){
 		this.numb = numb;
-		this.suit =["diamonds", "clubs", "hearts", "spades"];
-		this.cardName = numb + "of" + suit;
+		this.suit = suit;
+		this.cardName = numb + " of " + suit;
 	}
 	
 	//deck constructor with an empty array
@@ -20,16 +20,15 @@ window.onload = function(){
 
 	// creates a deck of 52 cards
 	Deck.prototype.init = function(){
-		
-		// const x = ["diamonds", "clubs", "hearts", "spades"];
 	
 		for (let i=1; i <= 13; i++){
+
 			let arr = ["diamonds", "clubs", "hearts", "spades"];
 
 			for (let x=0; x < 4; x++){
-
-				aCard = new Card(i, x,);
-			// for (let x of arr) {
+		// to run 
+				aCard = new Card(i, arr[x],);
+		
 				this.deck.push(aCard);
 
 			}
