@@ -5,9 +5,10 @@ window.onload = function(){
 	//card constructor "blueprint"
 	function Card (numb, suit){
 		this.numb = numb;
-		this.suits = ["diamonds", "clubs", "hearts", "spades"]
+		this.suit =["diamonds", "clubs", "hearts", "spades"];
 		this.cardName = numb + "of" + suit;
 	}
+	
 	//deck constructor with an empty array
 	function Deck (){
 		this.deck = [];
@@ -20,15 +21,16 @@ window.onload = function(){
 	// creates a deck of 52 cards
 	Deck.prototype.init = function(){
 		
-		this.suits = ["diamonds", "clubs", "hearts", "spades"];
-		let x = this.suits;
+		// const x = ["diamonds", "clubs", "hearts", "spades"];
 	
 		for (let i=1; i <= 13; i++){
-			
+			let arr = ["diamonds", "clubs", "hearts", "spades"];
+
 			for (let x=0; x < 4; x++){
+
 				aCard = new Card(i, x,);
+			// for (let x of arr) {
 				this.deck.push(aCard);
-	
 
 			}
 		}
@@ -231,4 +233,4 @@ window.onload = function(){
 
 	}
 
-	}
+}
