@@ -5,8 +5,8 @@ window.onload = function(){
 	//card constructor "blueprint"
 	function Card (numb, suit){
 		this.numb = numb;
-		// this.suit = ["diamonds", "clubs", "hearts", "spades"];
-		// this.cardName = numb + "of" + suit;
+		this.suits = ["diamonds", "clubs", "hearts", "spades"]
+		this.cardName = numb + "of" + suit;
 	}
 	//deck constructor with an empty array
 	function Deck (){
@@ -17,21 +17,18 @@ window.onload = function(){
 		this.deck = [];
 	}
 
-	//creates a deck of 52 cards
+	// creates a deck of 52 cards
 	Deck.prototype.init = function(){
+		
+		this.suits = ["diamonds", "clubs", "hearts", "spades"];
+		let x = this.suits;
+	
 		for (let i=1; i <= 13; i++){
+			
 			for (let x=0; x < 4; x++){
-				aCard = new Card(i);
+				aCard = new Card(i, x,);
 				this.deck.push(aCard);
-	// Deck.prototype.init = function(){
-	// 	suits = ["diamonds", "clubs", "hearts", "spades"]
-	// 	ranks = "A23456789TJQK"
-	// 	deck = new Card(ranks.length * suits.length);
-	// 	for (i = 0; i < suits.length; i++){
-	// 		for (j = 0; j < ranks.length; j++)
-	// 		  this.deck[j + i * ranks.length] = new Card(ranks[j],suits[i]);
-	// 		  this.deck.push(aCard);
-	// 		  }
+	
 
 			}
 		}
@@ -121,12 +118,14 @@ window.onload = function(){
 	$("#take").click(function(){
 		//makes sure the cards have been flipped first
 		if (flipped === true){
-			$("#playerCard").html(" ");
-			$("#computerCard").html(" ");
+			$("#topPlayerCard").html("");
+			$("#bottomPlayerCard").html("");
+			$("#topComputerCard").html("");
+			$("#bottomComputerCard").html("");
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
 			$("#gameStatus").html("")
-			$("computerBreak").removeClass("");
+			$("#computerBreak.lcard").html("")
 		}
 		flipped = false;
 		
@@ -178,10 +177,14 @@ window.onload = function(){
 		let computerSum =0;
 
 		for (let i=0; i <4; i++) {
+			if (playerFlipFour.length > i){
 			playerSum += playerFlipFour[i].numb;
 			$('#playerBreak .lCard:eq('+i+')').html(playerFlipFour[i].numb)
+			}
+			if (computerFlipFour.length > i){
 			computerSum += computerFlipFour[i].numb;
 			$('#computerBreak .lCard:eq('+i+')').html(computerFlipFour[i].numb)
+			}
 		}
 
 		if(playerSum > computerSum){
