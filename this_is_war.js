@@ -23,13 +23,13 @@ window.onload = function(){
 	
 		for (let i=1; i <= 13; i++){
 
-			let arr = ["diamonds", "clubs", "hearts", "spades"];
+		let arr = ["diamonds", "clubs", "hearts", "spades"];
 
-			for (let x=0; x < 4; x++){
+		for (let x=0; x < 4; x++){
 		// to run 
-				aCard = new Card(i, arr[x],);
+		aCard = new Card(i, arr[x],);
 		
-				this.deck.push(aCard);
+		this.deck.push(aCard);
 
 			}
 		}
@@ -126,7 +126,7 @@ window.onload = function(){
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
 			$("#gameStatus").html("")
-			$("#computerBreak.lcard").html("")
+			$("#computerBreak.lCard").html("")
 		}
 		flipped = false;
 		
