@@ -6,7 +6,7 @@ window.onload = function(){
 	function Card (numb, suit){
 		this.numb = numb;
 		this.suit = suit;
-		this.cardName = numb + " of " + suit;
+		this.cardName = numb + suit;
 	}
 	
 	//deck constructor with an empty array
@@ -23,7 +23,7 @@ window.onload = function(){
 	
 		for (let i=1; i <= 13; i++){
 
-		let arr = ["diamonds", "clubs", "hearts", "spades"];
+		let arr = ['\u2655', '\u2660', '\u2666', '\u2663'];
 
 		for (let x=0; x < 4; x++){
 		// to run 
@@ -102,10 +102,10 @@ window.onload = function(){
 				$("#playerCard").removeClass('blank');
 				console.log("removed, maybe?");
 				$("#computerCard").removeClass('blank');
-				$("#topPlayerCard").html(player.deck[player.deck.length-1].numb);
-				$("#bottomPlayerCard").html(player.deck[player.deck.length-1].numb);
-				$("#topComputerCard").html(computer.deck[computer.deck.length-1].numb);
-				$("#bottomComputerCard").html(computer.deck[computer.deck.length-1].numb);
+				$("#topPlayerCard").html(player.deck[player.deck.length-1].cardName);
+				$("#bottomPlayerCard").html(player.deck[player.deck.length-1].cardName);
+				$("#topComputerCard").html(computer.deck[computer.deck.length-1].cardName);
+				$("#bottomComputerCard").html(computer.deck[computer.deck.length-1].cardName);
 	
 			}
 			game.compare();

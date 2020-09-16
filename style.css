@@ -110,7 +110,7 @@
 #bottomPlayerCard {
 	color: black;
 	font-size: 50px;
-	margin-left: 110px;
+	margin-left: 90px;
 	margin-top: 160px;
 	display: inline-block;
 	-webkit-transform: rotate(10deg);
@@ -125,7 +125,7 @@
 #bottomComputerCard {
 	color: black;
 	font-size: 50px;
-	margin-left: 110px;
+	margin-left: 90px;
 	margin-top: 160px;
 	display: inline-block;
 	-webkit-transform: rotate(10deg);
