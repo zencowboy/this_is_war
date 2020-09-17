@@ -125,8 +125,9 @@ window.onload = function(){
 			$("#bottomComputerCard").html("");
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
-			$("#gameStatus").html("")
-			$("#computerBreak.lCard").html("")
+			$("#gameStatus").html("");
+			// $("#lCard").html("");
+			// $("#lCard").html("");
 		}
 		flipped = false;
 		
@@ -154,6 +155,7 @@ window.onload = function(){
 			computer.deck.unshift(temp);
 			player.deck.pop();
 			$("#gameStatus").html("You lose!");
+			// $("#computerBreak.lCard").html("")
 			//for ties
 		} else {
 			$("#gameStatus").html("Breaking tie...");
@@ -180,17 +182,19 @@ window.onload = function(){
 		for (let i=0; i <4; i++) {
 			if (playerFlipFour.length > i){
 			playerSum += playerFlipFour[i].numb;
-			$('#playerBreak .lCard:eq('+i+')').html(playerFlipFour[i].numb)
+			$('#playerBreak .lCard:eq('+i+')').html(playerFlipFour[i].cardName)
 			}
 			if (computerFlipFour.length > i){
 			computerSum += computerFlipFour[i].numb;
-			$('#computerBreak .lCard:eq('+i+')').html(computerFlipFour[i].numb)
+			$('#computerBreak .lCard:eq('+i+')').html(computerFlipFour[i].cardName)
+			// $("#computerBreak").removeClass('computerBlank');
 			}
 		}
 
 		if(playerSum > computerSum){
 				console.log("you won the Break");
 			$("#gameStatus").html("You won the Break!");
+	
 			//put the cards at the end of the player deck
 			while(playerFlipFour.length > 0){
 				player.deck.push(playerFlipFour.pop());

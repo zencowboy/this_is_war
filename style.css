@@ -68,7 +68,7 @@
 	/* display: none; */
 }
 .col-xs-6{
-	Font-size: 20px;
+	Font-size: 17px;
 	color: white;
 }
 .col-xs-3{
@@ -132,6 +132,12 @@
 	-moz-transform: rotate(10deg);
 	-o-transform: rotate(10deg); 
 	transform: rotate(180deg);
+}
+.playerBlank{
+	opacity: 100;
+}
+.computerBlank{
+	opacity: 100;
 }
 
 .bump{
