@@ -38,6 +38,7 @@
 
 #flip {
 	margin: 1em;
+	margin-top: 100px;
 	border-radius: 1em;
 	background-color: white;
 	font-size: 30px;
@@ -74,6 +75,7 @@
 .col-xs-3{
 	margin-left: -15px;
 }
+
 .pDeck{
 	background: #b1cbe6;
 	box-shadow: 5px 10px #2c3e50;
@@ -133,12 +135,12 @@
 	-o-transform: rotate(10deg); 
 	transform: rotate(180deg);
 }
-.playerBlank{
-	opacity: 100;
+/* .playerBlank{
+	opacity: 0;
 }
 .computerBlank{
-	opacity: 100;
-}
+	opacity: 0;
+} */
 
 .bump{
 	margin: 20px;

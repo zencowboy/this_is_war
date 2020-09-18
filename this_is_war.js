@@ -87,6 +87,12 @@ window.onload = function(){
 		game = new Game();
 		game.init();
 		$("#gameStatus").html(" ");
+		$("#playerCard").addClass('blank');
+		console.log("Here we go, new game!");
+		$("#computerCard").addClass('blank');
+		// $("#playerBreak").removeClass("playerBlank");
+		// $("#computerBreak").removeClass("computerBlank");
+
 	});
 
 	let flipped = false;
@@ -126,6 +132,9 @@ window.onload = function(){
 			$("#playerCard").addClass('blank');
 			$("#computerCard").addClass('blank');
 			$("#gameStatus").html("");
+			$("#playerBreak").hide();
+			$("#computerBreak").hide();
+
 			// $("#lCard").html("");
 			// $("#lCard").html("");
 		}
@@ -178,11 +187,15 @@ window.onload = function(){
 		
 		let playerSum = 0;
 		let computerSum =0;
-
+		$("#playerBreak").show();
+		$("#computerBreak").show();
 		for (let i=0; i <4; i++) {
 			if (playerFlipFour.length > i){
 			playerSum += playerFlipFour[i].numb;
 			$('#playerBreak .lCard:eq('+i+')').html(playerFlipFour[i].cardName)
+	
+
+
 			}
 			if (computerFlipFour.length > i){
 			computerSum += computerFlipFour[i].numb;
@@ -213,7 +226,7 @@ window.onload = function(){
 			while(computerFlipFour.length > 0){
 				computer.deck.push(computerFlipFour.pop())
 			}
-				$("#gameStatus").html("You lose!");
+				// $("#gameStatus").html("You lose!");
 
 		}
 		else {
